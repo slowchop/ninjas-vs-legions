@@ -1,0 +1,9 @@
+[package]
+name = "ninja-vs-legions"
+version = "0.1.0"
+authors = ["gak <gak@gak0.com>"]
+edition = "2018"
+
+[dependencies]
+ggez = "0.5"
+shipyard = { git = "https://github.com/leudz/shipyard.git", rev = "b4d1192201b364d4d99b8411dd54c6448b222754" }
