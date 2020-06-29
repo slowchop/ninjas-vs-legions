@@ -1,7 +1,8 @@
 use ggez::{Context, graphics};
-use shipyard::{UniqueViewMut, View, IntoIter};
+use shipyard::{UniqueViewMut, View, IntoIter, Shiperator};
 use ggez::graphics::{DrawParam, Drawable};
 use std::collections::HashMap;
+use crate::anchor::Anchor;
 
 pub struct Sprite {
     pub name: String,
@@ -18,8 +19,15 @@ pub fn draw_sprites(
     mut sprite_cache: UniqueViewMut<SpriteCache>,
     sprites: View<Sprite>,
     positions: View<Sprite>,
+    anchors: View<Anchor>,
 ) {
-    for (sprite, position) in (&sprites, &positions).iter() {
+    for (id, (sprite, position)) in (&sprites, &positions).iter().with_id() {
+        let mut real_position = position;
+
+        if let Some(anchor) = (&anchors).get(id) {
+            dbg!(anchor);
+        }
+
         sprite_cache.image(ctx, &sprite.name).draw(ctx, DrawParam::new());
     }
 }

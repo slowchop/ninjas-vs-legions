@@ -4,6 +4,7 @@ use ggez::{Context, graphics};
 use ggez::graphics::{DrawParam, Drawable};
 use std::collections::HashMap;
 use crate::sprite::{SpriteCache, draw_sprites, Sprite};
+use crate::anchor::{Anchor, VerticalAnchor, HorizontalAnchor};
 
 struct Position {
     pub x: f32,
@@ -17,29 +18,6 @@ impl Position {
 }
 
 struct Ninja {}
-
-enum VerticalAnchor {
-    Top,
-    Middle,
-    Bottom,
-}
-
-enum HorizontalAnchor {
-    Left,
-    Middle,
-    Right,
-}
-
-struct Anchor {
-    vertical: VerticalAnchor,
-    horizontal: HorizontalAnchor,
-}
-
-impl Anchor {
-    fn new(vertical: VerticalAnchor, horizontal: HorizontalAnchor) -> Self {
-        Self { vertical, horizontal }
-    }
-}
 
 pub fn init(world: &World, ctx: &mut Context) {
     world.add_unique(SpriteCache::new());

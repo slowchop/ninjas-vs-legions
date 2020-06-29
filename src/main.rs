@@ -1,3 +1,4 @@
+mod anchor;
 mod sprite;
 mod game;
 mod state;
