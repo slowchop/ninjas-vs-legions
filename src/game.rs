@@ -1,19 +1,24 @@
 use shipyard::{World, View, IntoIter, UniqueViewMut};
-use crate::state::State;
-use ggez::{Context, graphics};
-use ggez::graphics::{DrawParam, Drawable};
-use std::collections::HashMap;
-use crate::sprite::{SpriteCache, draw_sprites, Sprite};
-use crate::anchor::{Anchor, VerticalAnchor, HorizontalAnchor};
 
-struct Position {
+use ggez::{Context};
+use ggez::nalgebra::Point2;
+
+use std::collections::HashMap;
+use crate::sprite::{SpriteCache, draw_sprites, Sprite, Anchor, VerticalAnchor, HorizontalAnchor};
+
+#[derive(Debug, Copy, Clone)]
+pub struct Position {
     pub x: f32,
     pub y: f32,
 }
 
 impl Position {
-    fn new(x: f32, y: f32) -> Self {
+    pub fn new(x: f32, y: f32) -> Self {
         Self { x, y }
+    }
+
+    pub fn point2(self) -> Point2<f32> {
+        return Point2::<f32>::new(self.x, self.y);
     }
 }
 
@@ -32,7 +37,7 @@ pub fn init_entities(world: &World) {
 
     world.entity_builder()
         .with(Sprite::new("/ninja1_idle.png"))
-        .with(Position::new(0., 0.))
+        .with(Position::new(135., 190.))
         .with(Anchor::new(VerticalAnchor::Bottom, HorizontalAnchor::Middle))
         .build();
 }
