@@ -3,16 +3,25 @@ use ggez::graphics::{Color, Drawable, DrawParam};
 use mint::Vector2;
 use shipyard::World;
 use crate::SCREEN_WIDTH;
+use std::collections::HashMap;
 
 pub struct State {
     world: World,
+    images: HashMap<String, graphics::Image>,
 }
 
 impl State {
     pub(crate) fn new() -> Self {
         Self {
             world: World::new(),
+            images: HashMap::new(),
         }
+    }
+
+    pub fn image(&mut self, ctx: &mut Context, path: &str) -> &graphics::Image {
+        self.images.entry(path.to_string()).or_insert_with(||
+            graphics::Image::new(ctx, path).unwrap()
+        )
     }
 }
 
@@ -34,10 +43,10 @@ impl ggez::event::EventHandler for State {
     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         graphics::clear(ctx, Color::new(0.0, 0.0, 0.0, 1.0));
 
-        let image =
-            graphics::Image::new(ctx, "/throne.png")?;
+        // let image =
+        //     graphics::Image::new(ctx, "/throne.png")?;
 
-        image.draw(ctx, DrawParam::new());
+        self.image(ctx, "/throne.png").draw(ctx, DrawParam::new());
 
         let font = graphics::Font::new(ctx, "/fonts/Open Sans Px/OpenSansPX.ttf")?;
 
@@ -61,3 +70,4 @@ impl ggez::event::EventHandler for State {
         Ok(())
     }
 }
+

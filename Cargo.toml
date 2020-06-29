@@ -7,3 +7,7 @@ edition = "2018"
 [dependencies]
 ggez = "0.5"
 shipyard = { git = "https://github.com/leudz/shipyard.git", rev = "b4d1192201b364d4d99b8411dd54c6448b222754" }
+
+nalgebra = "0.20"
+ncollide2d = "0.22"
+nphysics2d = "0.14"
