@@ -2,11 +2,11 @@ use ggez::*;
 use ggez::graphics::{Color, Drawable, DrawParam};
 use mint::Vector2;
 use shipyard::World;
-use crate::SCREEN_WIDTH;
+use crate::{SCREEN_WIDTH, game};
 use std::collections::HashMap;
 
 pub struct State {
-    world: World,
+    pub world: World,
     images: HashMap<String, graphics::Image>,
 }
 
@@ -65,6 +65,8 @@ impl ggez::event::EventHandler for State {
             .color(Color::new(0., 0., 0., 1.0))
             .scale(Vector2 { x: 0.2, y: 0.2 });
         graphics::draw(ctx, &scoreboard_text, params).expect("error drawing scoreboard text");
+
+        game::init(&self.world, ctx);
 
         graphics::present(ctx).expect("error presenting");
         Ok(())

@@ -15,9 +15,8 @@ use ncollide2d::world::CollisionWorld;
 const SCREEN_WIDTH: f32 = 320.;
 const SCREEN_HEIGHT: f32 = 200.;
 
-// struct Collider {
-//     handle: ShapeHandle,
-// }
+struct Collider {
+}
 
 fn main() {
     // Testing...
@@ -52,8 +51,6 @@ fn main() {
         // let what = contact_query.contact_pair(a);
     }
 
-    let mut state = State::new();
-
     let mut c = conf::Conf::new();
     c.window_setup.title = "Ninjas vs Legions".to_string();
 
@@ -83,6 +80,9 @@ fn main() {
     filesystem::print_all(ctx);
 
     graphics::set_default_filter(ctx, FilterMode::Nearest);
+
+    let mut state = State::new();
+    game::init_entities(&state.world);
 
     event::run(ctx, event_loop, &mut state).unwrap();
 }
