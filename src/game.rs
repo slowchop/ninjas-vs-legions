@@ -57,6 +57,11 @@ pub fn init(world: &World, ctx: &mut Context) {
 
 pub fn init_entities(world: &World) {
     world.entity_builder()
+        .with(Sprite::new("/throne.png"))
+        .with(Position::new(0., 0.))
+        .build();
+
+    world.entity_builder()
         .with(Sprite::new("/ninja1_idle.png"))
         .with(Position::new(0., 0.))
         .with(Anchor::new(VerticalAnchor::Bottom, HorizontalAnchor::Middle))
