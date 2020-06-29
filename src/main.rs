@@ -1,3 +1,4 @@
+mod sprite;
 mod game;
 mod state;
 

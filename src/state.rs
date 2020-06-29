@@ -35,9 +35,6 @@ impl ggez::event::EventHandler for State {
     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         graphics::clear(ctx, Color::new(0.0, 0.0, 0.0, 1.0));
 
-        // let image =
-        //     graphics::Image::new(ctx, "/throne.png")?;
-
         let font = graphics::Font::new(ctx, "/fonts/Open Sans Px/OpenSansPX.ttf")?;
 
         let mut scoreboard_text = graphics::Text::new("hi jart what's going on? huh? pew pew pew 1234567890");
