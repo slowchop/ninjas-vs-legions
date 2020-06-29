@@ -5,7 +5,9 @@ use ggez::graphics::{DrawParam, Drawable, Rect};
 use ggez::nalgebra::Point2;
 use std::collections::HashMap;
 use crate::game::Position;
+use rand::random;
 
+#[derive(Debug)]
 pub struct Sprite {
     pub name: String,
 }
@@ -24,6 +26,7 @@ pub fn draw_sprites(
     anchors: View<Anchor>,
 ) {
     for (id, (sprite, position)) in (&sprites, &positions).iter().with_id() {
+        dbg!(sprite);
         let image = sprite_cache.image(ctx, &sprite.name);
 
         let mut real_position = *position;
@@ -31,11 +34,9 @@ pub fn draw_sprites(
             anchor.apply(&mut real_position, &image.dimensions())
         }
 
-        dbg!(&real_position);
+        real_position.x += random::<f32>();
 
-        // image.draw(ctx, DrawParam{dest: real_position.point2(), ..DrawParam::default()});
-        // image.draw(ctx, DrawParam{dest: real_position.point2(), ..DrawParam::default()});
-        graphics::draw(ctx, image, (real_position.point2(),));
+        graphics::draw(ctx, image, (real_position.point2(), ));
     }
 }
 

@@ -4,6 +4,7 @@ use mint::Vector2;
 use shipyard::World;
 use crate::{SCREEN_WIDTH, game};
 use std::collections::HashMap;
+use crate::game::update;
 
 pub struct State {
     pub world: World,
@@ -30,6 +31,13 @@ impl ggez::event::EventHandler for State {
         //     );
         // }
 
+        const DESIRED_FPS: u32 = 60;
+
+        while timer::check_update_time(ctx, DESIRED_FPS) {
+            println!("update");
+            update(&self.world, ctx);
+        }
+
         Ok(())
     }
     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
@@ -53,7 +61,7 @@ impl ggez::event::EventHandler for State {
             .scale(Vector2 { x: 0.2, y: 0.2 });
         graphics::draw(ctx, &scoreboard_text, params).expect("error drawing scoreboard text");
 
-        game::init(&self.world, ctx);
+        draw(&self.world, ctx);
 
         graphics::present(ctx).expect("error presenting");
         Ok(())

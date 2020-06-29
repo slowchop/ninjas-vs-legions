@@ -26,7 +26,14 @@ struct Ninja {}
 
 pub fn init(world: &World, ctx: &mut Context) {
     world.add_unique(SpriteCache::new());
-    world.run_with_data(draw_sprites, ctx);
+    init_entities(&world);
+}
+
+pub fn update(world: &World, ctx: &mut Context) {
+}
+
+pub fn draw(world: &World, ctx: &mut Context) {
+    world.run_with_data(draw_sprites, ctx)
 }
 
 pub fn init_entities(world: &World) {

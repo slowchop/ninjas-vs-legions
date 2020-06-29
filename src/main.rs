@@ -83,7 +83,9 @@ fn main() {
     graphics::set_default_filter(ctx, FilterMode::Nearest);
 
     let mut state = State::new();
-    game::init_entities(&state.world);
+
+    println!("init");
+    game::init(&state.world, ctx);
 
     event::run(ctx, event_loop, &mut state).unwrap();
 }
